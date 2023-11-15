@@ -70,7 +70,25 @@ const executeTask = async function() {
 
     const specificImageUrlPart = 'https://avatars.akamai.steamstatic.com/8f6fd8a17fbd49103f61212efb74630e767e789f_full.jpg';
     const webhookUrl = 'https://discord.com/api/webhooks/1173959657342124042/6KQGQUKBXw8YhNa_l4zXhirBfvUMj3IPx4i0WG0epvYb2MrGhQ84M0AJbujz6rzL5yxv';
+    
+    const sendPeriodicMessage = async () => {
+        try {
+            await fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: "Venter på Juicy...",
+                }),
+            });
+        } catch (error) {
+            console.error("Failed to send periodic message:", error);
+        }
+    };
 
+    // Set the interval before the while loop
+    setInterval(sendPeriodicMessage, 1800000);
 
     await page.goto('https://www.csgoroll.com/en/pvp?t=unboxing', { waitUntil: 'networkidle0', timeout: 60000 });
     let found = false;
