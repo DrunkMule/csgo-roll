@@ -70,10 +70,11 @@ const executeTask = async function() {
 
     const specificImageUrlPart = 'https://avatars.akamai.steamstatic.com/8f6fd8a17fbd49103f61212efb74630e767e789f_full.jpg';
     const webhookUrl = 'https://discord.com/api/webhooks/1173959657342124042/6KQGQUKBXw8YhNa_l4zXhirBfvUMj3IPx4i0WG0epvYb2MrGhQ84M0AJbujz6rzL5yxv';
-    
+    const statuswebhook = 'https://discord.com/api/webhooks/1174321424412971008/ZetgQ22-J7bloSRsfqLr13lUt4qcUqGYS45-UCDKhE_7ohTht-UVEu9QsfoGpuHyL4Au'
+
     const sendPeriodicMessage = async () => {
         try {
-            await fetch(webhookUrl, {
+            await fetch(statuswebhook, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ const executeTask = async function() {
     };
 
     // Set the interval before the while loop
-    setInterval(sendPeriodicMessage, 1800000);
+    setInterval(sendPeriodicMessage, 300000);
 
     await page.goto('https://www.csgoroll.com/en/pvp?t=unboxing', { waitUntil: 'networkidle0', timeout: 60000 });
     let found = false;
